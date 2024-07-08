@@ -1,4 +1,5 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro"
 import Header from "../components/Header.astro"
 const pageTitle = "spano"
 const identity = {
@@ -14,14 +15,8 @@ const goal = 3
 
 const skillColor = "navy"
 ---
+<BaseLayout>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
 		<style>
 			h1{
 				color: purple;
@@ -35,10 +30,9 @@ const skillColor = "navy"
 				font-weight: bold;
 			}
 		</style>
-	</head>
-	<body>
-		<Header/>
-		<h1>{pageTitle}</h1>
+
+		
+		
         <p>
 			I am {identity.firstName} and I live in {identity.country}
 			My Occupation is {identity.Occupation} Below are my hobbies {identity.Hobbies}
@@ -49,5 +43,4 @@ const skillColor = "navy"
 		{happy && <p>I am happy to be learning astro</p>}
 		{finished && <p>I finished this tutorial</p>}
 		{goal === 3 ? <p>My goal is to finish in 3 days</p> : <p>My goal is not 3 days</p>}
-	</body>
-</html>
+</BaseLayout>

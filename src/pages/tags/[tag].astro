@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogPost from "../../components/BlogPost.astro"
+
+// This function fetches all posts and returns an array of tag paths for static generation
+export async function getStaticPaths() {
+    const allPosts = await Astro.glob('../posts/*.md');// Fetch all Markdown files
+    return [
+        {params: {tag: "astro"}},
+        {params: {tag: "successess"}},
+        {params: {tag: "community"}},
+        {params: {tag: "blogging"}},
+        {params: {tag: "setbacks"}},
+        {params: {tag: "learning in public"}},
+    ];
+}
+
+const {tag} = Astro.params; // Get the current tag from params
+const {posts} = Astro.props; // Get the posts from props
+console.log('Tag:', tag);
+console.log('Posts:', posts);
+// Filter the posts to include only those with the current tag
+const filteredPosts = posts.filter((post) => post.frontmatter.tags?.includes(tag));
+---
+
+<BaseLayout pageTitle={tag}>
+    <p>Posts tagged with {tag}</p>
+    <ul>
+        {filteredPosts.map((post) => (
+            <BlogPost url={post.url} title={post.frontmatter.title}/>
+        ))}
+    </ul>
+</BaseLayout>;
