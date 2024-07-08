@@ -23,6 +23,5 @@ const { posts = [] } = Astro.props;  // Provide a default value for posts
     <p>posts tsgged with {tag}</p>
     <ul>
         {posts.map((post) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
-</ul>
     </ul>
 </BaseLayout>
